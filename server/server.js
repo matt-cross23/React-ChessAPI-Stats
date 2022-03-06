@@ -5,15 +5,23 @@ const { message } = require('statuses');
 const dotenv = require('dotenv').config()
 const {errorHandler} =require('./midleware/errorMiddleware')
 const connectDB = require('./config/db')
-const PORT =process.env.PORT || 5000
+const cors = require('cors')
+const PORT =process.env.PORT || 3000
 
 // Connect to dtatbase
 connectDB();
 
+
 const app = express();
 
+const corsOptions ={
+  origin:'http://localhost:5000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
 app.use(express.json())
 app.use(express.urlencoded ({ extended: true}))
+app.use(cors(corsOptions));
 
 
 // app.get('/', (req, res) => {
