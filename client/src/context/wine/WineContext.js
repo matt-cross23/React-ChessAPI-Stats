@@ -4,7 +4,7 @@ const ChessWebAPI = require('chess-web-api')
 const chessAPI = new ChessWebAPI();
 
 const WineContext = createContext();
-const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+// const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 // const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN
 export const WineProvider = ({ children }) => {
   const initialState = {
@@ -21,8 +21,12 @@ export const WineProvider = ({ children }) => {
     const searchParams = modifyParams.substring(5);
 
   chessAPI.getPlayer(searchParams)
-    .then(function(response) {
+    .then( async function(response) {
         console.log('Player Profile', response.body);
+        dispatch({
+          type: "GET_USERS",
+          payload: response.body
+        })
     }, function(err) {
         console.error(err);
     });

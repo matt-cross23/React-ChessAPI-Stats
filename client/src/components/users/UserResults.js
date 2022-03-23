@@ -8,7 +8,7 @@ import '../Styles/Card.css'
 function UserResults() {
    const {users, loading} = useContext
    (WineContext)
-
+console.log(users)
    
 
 
@@ -26,16 +26,14 @@ if (!loading) {
        {/* <div class="row"> */}
   
          
-       {users.map((user) => (
-             <UserItem key={user.id} user={user} />
+       {users.map((username) => (
+             <UserItem key={username} username={username} />
          ))}
-          
-       {/* </div> */}
+        
        </div>
     )
   } else {
     return   <h1>Spinner</h1>//<Spinner />
-    
   }
 }
 
